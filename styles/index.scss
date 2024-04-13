@@ -125,17 +125,18 @@ body {
     }
     #products {
       list-style: none;
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 2rem;
       .product {
         box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
         display: flex;
         padding: 1rem;
         gap: 1.5rem;
+        cursor: pointer;
         img {
           width: 100px;
           max-height: 100px;
+          object-fit: cover;
         }
         .productInfo {
           display: flex;
@@ -160,6 +161,7 @@ body {
     }
   }
   footer {
+    margin: 1rem 0 2rem 0;
     #pages {
       display: flex;
       list-style: none;
@@ -177,6 +179,19 @@ body {
           background-color: #76a713;
           color: #e1e1e1;
         }
+      }
+    }
+  }
+}
+
+.cardsGrid {
+  grid-template-columns: 1fr 1fr;
+  .product {
+    flex-direction: column;
+    align-items: center;
+    .productInfo {
+      .productDescription {
+        display: none !important;
       }
     }
   }

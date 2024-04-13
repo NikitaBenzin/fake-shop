@@ -30,3 +30,11 @@ export async function getAllCategories() {
   return json
 
 }
+
+export async function getRating() {
+  // Get rating of all products
+  let data = await fetch(URL + '?limit=0&select=rating')
+  let json = await data.json()
+  return json
+
+}

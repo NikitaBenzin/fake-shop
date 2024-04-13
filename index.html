@@ -15,20 +15,20 @@
       <nav>
         <label for="productsPerPage">
           Per Page:
-          <select name="productsPerPage">
-            <option value="1">5</option>
-            <option value="2">10</option>
-            <option value="3">20</option>
-            <option value="4">30</option>
+          <select id="productsPerPage" name="productsPerPage">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
           </select>
         </label>
 
         <label for="productsSortby">Sort by:
-          <select name="productsSortby">
-            <option value="1">Best Match</option>
-            <option value="2">By rating</option>
-            <option value="3">By price ↑</option>
-            <option value="4">By price ↓</option>
+          <select id="productsSortby" name="productsSortby">
+            <option value="best">Best Match</option>
+            <option value="rating">By rating</option>
+            <option value="priseUp">By price ↑</option>
+            <option value="priseDown">By price ↓</option>
           </select>
         </label>
 
@@ -72,34 +72,7 @@
             $800</label>
         </section>
       </aside>
-      <ul id="products">
-        <li class="product">
-          <img src="./img/green.jpg" alt="Green Vegetable">
-          <section class="productInfo">
-            <h3>Green Vegetables</h3>
-            <span class="productPrice">
-              <p class="priseNormal">$143.00</p>
-              <s>$158.00</s>
-            </span>
-            <p class="productDescription">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque,
-              exercitationem ipsa! Facilis nobis
-              voluptates earum nesciunt, quia voluptatem!</p>
-          </section>
-        </li>
-        <li class="product">
-          <img src="./img/green.jpg" alt="Green Vegetable">
-          <section class="productInfo">
-            <h3>Green Vegetables</h3>
-            <span class="productPrice">
-              <p class="priseNormal">$143.00</p>
-              <s>$158.00</s>
-            </span>
-            <p class="productDescription">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque,
-              exercitationem ipsa! Facilis nobis
-              voluptates earum nesciunt, quia voluptatem!</p>
-          </section>
-        </li>
-      </ul>
+      <ul id="products"></ul>
     </main>
     <footer>
       <ul id="pages">

@@ -106,8 +106,7 @@ body {
 }
 .container main #products {
   list-style: none;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 2rem;
 }
 .container main #products .product {
@@ -115,10 +114,13 @@ body {
   display: flex;
   padding: 1rem;
   gap: 1.5rem;
+  cursor: pointer;
 }
 .container main #products .product img {
   width: 100px;
   max-height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .container main #products .product .productInfo {
   display: flex;
@@ -134,6 +136,9 @@ body {
 }
 .container main #products .product .productInfo .productDescription {
   color: #a3a4ae;
+}
+.container footer {
+  margin: 1rem 0 2rem 0;
 }
 .container footer #pages {
   display: flex;
@@ -153,4 +158,15 @@ body {
 .container footer #pages .page:hover {
   background-color: #76a713;
   color: #e1e1e1;
+}
+
+.cardsGrid {
+  grid-template-columns: 1fr 1fr;
+}
+.cardsGrid .product {
+  flex-direction: column;
+  align-items: center;
+}
+.cardsGrid .product .productInfo .productDescription {
+  display: none !important;
 }/*# sourceMappingURL=index.css.map */
