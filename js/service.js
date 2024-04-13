@@ -28,7 +28,13 @@ export async function getAllCategories() {
   let data = await fetch(URL + '/categories')
   let json = await data.json()
   return json
+}
 
+export async function getProductOfCategory(category) {
+  // Get all categories
+  let data = await fetch(URL + '/category/' + category)
+  let json = await data.json()
+  return json
 }
 
 export async function getRating() {
@@ -36,5 +42,18 @@ export async function getRating() {
   let data = await fetch(URL + '?limit=0&select=rating')
   let json = await data.json()
   return json
+}
 
+export async function getProductsPrice() {
+  // Get rating of all products
+  let data = await fetch(URL + '?select=price')
+  let json = await data.json()
+  return json
+}
+
+export async function getProduct(productId) {
+  // Get rating of all products
+  let data = await fetch(URL + '/' + productId)
+  let json = await data.json()
+  return json
 }
