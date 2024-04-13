@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  background-color: #fcfafe;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.active svg {
+  fill: #76a713 !important;
+}
+
+#pages .active {
+  background-color: #76a713;
+  color: #e1e1e1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+}
+.container header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 2rem 0;
+}
+.container header nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+.container header nav label select {
+  cursor: pointer;
+  padding: 0.2rem;
+}
+.container header nav .cardsStyle {
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.container header nav .cardsStyle:hover svg {
+  fill: #76a713;
+}
+.container header nav #search {
+  display: flex;
+  align-items: center;
+}
+.container header nav #search input {
+  height: 30px;
+  border-right: none;
+  border: none;
+  padding-left: 0.6rem;
+  background-color: #e1e1e1;
+}
+.container header nav #search input:focus {
+  outline: none;
+}
+.container header nav #search button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #76a713;
+  cursor: pointer;
+}
+.container header nav #search button svg {
+  fill: #ffffff;
+}
+.container main {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 50px;
+  margin: 2rem 0;
+}
+.container main aside {
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  padding: 2rem 1.5rem;
+}
+.container main aside .filterSection h3 {
+  margin-bottom: 1rem;
+}
+.container main aside .filterSection label {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+.container main aside .filterSection:nth-child(2) h3 {
+  margin-top: 1rem;
+}
+.container main aside .filterSection:nth-child(2) label {
+  color: #a3a4ae;
+  flex-direction: column;
+}
+.container main #products {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.container main #products .product {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  padding: 1rem;
+  gap: 1.5rem;
+}
+.container main #products .product img {
+  width: 100px;
+  max-height: 100px;
+}
+.container main #products .product .productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.container main #products .product .productInfo .productPrice {
+  display: flex;
+  gap: 1rem;
+}
+.container main #products .product .productInfo .productPrice s {
+  color: #fe7070;
+}
+.container main #products .product .productInfo .productDescription {
+  color: #a3a4ae;
+}
+.container footer #pages {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+.container footer #pages .page {
+  width: 30px;
+  height: 30px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.container footer #pages .page:hover {
+  background-color: #76a713;
+  color: #e1e1e1;
+}/*# sourceMappingURL=index.css.map */
