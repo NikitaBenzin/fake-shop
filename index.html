@@ -66,8 +66,10 @@
 
         <section class="filterSection">
           <h3>Price/SQ Ft Filter</h3>
-          <label for="priceRange"><input value="100" type="range" name="priceRange" id="priceRange"><br>From $0 to
-            $800</label>
+          <label for="priceRange">
+            <input type="range" name="priceRange" id="priceRange" min="0">
+            <p id="rangePrice">From $0 to $800</p>
+          </label>
         </section>
       </aside>
       <ul id="products"></ul>

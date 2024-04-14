@@ -3,29 +3,23 @@
 
 import { getAllCategories, getAllData, getPerPage, getProduct, getProductOfCategory, getProductsPrice, getRating, search } from './service.js'
 
-let data = await getPerPage()
-let dataAll = await getAllData()
-
 
 // VARIABLES
-const selectPerPage = document.querySelector('#productsPerPage')
-const selectSortby = document.querySelector('#productsSortby')
-
 const productsLayout = document.querySelector('#products')
 
 const pageStyleGrid = document.querySelector('#grid')
 const pageStyleList = document.querySelector('#list')
 
-
 const searchInput = document.querySelector('#searchInput')
 const searchBtn = document.querySelector('#searchBtn')
 
 const categoriesLayout = document.querySelector('#categories')
-let categoriesCheckboxes
-
+const priceRangeInput = document.querySelector('#priceRange')
+const rangePrice = document.querySelector('#rangePrice')
 // FUNCTIONS
 initializeProducts()
 initializeCategories()
+initializeMaxRangePrice()
 
 // Products initialize function
 async function initializeProducts(productsPerPage = 5, sortedArray = []) {
@@ -51,6 +45,7 @@ async function initializeProducts(productsPerPage = 5, sortedArray = []) {
   }
 
   productsLayout.innerHTML = productsCards
+
 }
 
 // Create cards per page depending on selected amount
@@ -110,7 +105,7 @@ async function sortByRating() {
   newArray.sort(function (a, b) {
     return a.rating - b.rating
   })
-  initializeProducts(productsPerPage.value, newArray)
+  initializeProducts(productsPerPage.value, newArray.reverse())
 }
 
 // Sorting function by price
@@ -142,7 +137,6 @@ async function sortByPrice(direction) {
     default:
       break
   }
-
   initializeProducts(productsPerPage.value, sortedArray)
 }
 
@@ -191,13 +185,20 @@ async function initializeCategories() {
   let categories = ``
 
   allCategories.forEach(category => {
-    categories += `
-      <label for="${category}"><input onchange='showProductsOfCategory(${category})' type="checkbox" name="${category}" id="${category}">${category}</label>
-    `
-  })
 
-  categoriesLayout.innerHTML = categories
-  categoriesCheckboxes = document.querySelectorAll('#categories input')
+    const newElement = document.createElement('label')
+    newElement.setAttribute('for', category)
+
+    categories = `
+      <input type="checkbox" name="${category}" id="${category}">${category}
+    `
+    newElement.innerHTML = categories
+    newElement.addEventListener('change', () => {
+      showProductsOfCategory(category)
+    })
+    categoriesLayout.appendChild(newElement)
+
+  })
 
 }
 
@@ -208,6 +209,13 @@ async function showProductsOfCategory(categoryName) {
   // Show loading spinner
   const spinner = `<div class="lds-dual-ring"></div>`
   productsLayout.innerHTML = spinner
+
+  let categoriesCheckboxes = document.querySelectorAll('#categories input')
+  categoriesCheckboxes.forEach(input => {
+    if (categoryName != input.getAttribute('id')) {
+      input.checked = false
+    }
+  })
 
   products.forEach(product => {
     newArray.push(product)
@@ -220,4 +228,43 @@ async function showProductsOfCategory(categoryName) {
   }
 
   productsLayout.innerHTML = productsCards
+}
+
+priceRangeInput.addEventListener('mouseup', (event) => {
+  changeMaxRangePrice(event.target.value)
+})
+
+async function initializeMaxRangePrice() {
+  const { products } = await getProductsPrice()
+  let sortedArray = []
+
+  products.forEach(product => {
+    sortedArray.push({ "id": product.id, "price": product.price })
+  })
+
+  sortedArray.sort(function (a, b) {
+    return b.price - a.price
+  })
+
+  priceRangeInput.setAttribute('max', sortedArray[0].price)
+  priceRangeInput.setAttribute('value', sortedArray[0].price)
+  rangePrice.innerText = `From $0 to $${sortedArray[0].price}`
+}
+
+async function changeMaxRangePrice(maxValue) {
+  const { products } = await getAllData()
+  let sortedArray = []
+
+  products.forEach(product => {
+    if (product.price <= maxValue) {
+      sortedArray.push(product)
+    }
+  })
+
+  rangePrice.innerText = `From $0 to $${maxValue}`
+  if (sortedArray.length) {
+    initializeProducts(productsPerPage.value, sortedArray)
+  } else {
+    productsLayout.innerText = `There is no products with this price`
+  }
 }

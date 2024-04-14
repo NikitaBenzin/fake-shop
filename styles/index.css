@@ -84,6 +84,7 @@ body {
   grid-template-columns: 1fr 2fr;
   gap: 50px;
   margin: 2rem 0;
+  width: 100%;
 }
 .container main aside {
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
