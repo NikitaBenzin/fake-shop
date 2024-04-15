@@ -1,7 +1,7 @@
 // TODO: 1. add categories filtering
 //       2. add price filter
 
-import { getAllCategories, getAllData, getPerPage, getProduct, getProductOfCategory, getProductsPrice, getRating, search } from './service.js'
+import { getAllCategories, getAllData, getNextPage, getPerPage, getProduct, getProductOfCategory, getProductsPrice, getRating, search } from './service.js'
 
 
 // VARIABLES
@@ -16,6 +16,8 @@ const searchBtn = document.querySelector('#searchBtn')
 const categoriesLayout = document.querySelector('#categories')
 const priceRangeInput = document.querySelector('#priceRange')
 const rangePrice = document.querySelector('#rangePrice')
+
+const pagesList = document.querySelectorAll('.page')
 // FUNCTIONS
 initializeProducts()
 initializeCategories()
@@ -267,4 +269,27 @@ async function changeMaxRangePrice(maxValue) {
   } else {
     productsLayout.innerText = `There is no products with this price`
   }
+}
+
+pagesList.forEach(page => {
+  page.addEventListener('click', () => {
+    changePage(page.textContent)
+    pagesList.forEach(item => {
+      item.classList.remove('active')
+    })
+    page.classList.add('active')
+  })
+})
+
+async function changePage(page) {
+  window.scrollTo(0, 0)
+
+  const { products } = await getNextPage(page, productsPerPage.value)
+  let sortedArray = []
+
+  products.forEach(product => {
+    sortedArray.push(product)
+  })
+
+  initializeProducts(productsPerPage.value, sortedArray)
 }

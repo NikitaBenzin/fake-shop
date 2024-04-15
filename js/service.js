@@ -45,15 +45,23 @@ export async function getRating() {
 }
 
 export async function getProductsPrice() {
-  // Get rating of all products
+  // Get products price
   let data = await fetch(URL + '?select=price')
   let json = await data.json()
   return json
 }
 
 export async function getProduct(productId) {
-  // Get rating of all products
+  // Get product
   let data = await fetch(URL + '/' + productId)
+  let json = await data.json()
+  return json
+}
+
+export async function getNextPage(page, productsPerPage) {
+  // Get rating of all products
+  let limit = (page - 1) * productsPerPage
+  let data = await fetch(URL + '?limit=' + productsPerPage + '&skip=' + limit)
   let json = await data.json()
   return json
 }
